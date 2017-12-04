@@ -1,13 +1,48 @@
+
 <?php
-$servername = “cssql.seattleu.edu";
-$username = "username";
-$password = "password";
+$servername = "cssql.seattleu.edu";
+$username = "sudold";
+$password = "sudold";
+$dbname = "sudold";
 // Create connection
-$conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
 if (!$conn) {
 die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully";
+
+
+
+$sql = "SELECT  platform_type, title
+FROM PLATFORM
+JOIN PLATFORM_INFO USING (platform_id)
+INNER JOIN GAME_INFO USING (game_id)
+JOIN GAMES USING (game_id)
+WHERE platform_type = 'PS4'";
+
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+echo "<table border = '1'>\n";
+// output data of each row
+
+echo "<tr>\n";
+echo "<th>platform_type</th>\n<th>title</th>\n";
+echo "</tr>\n"; 
+
+
+while($row = mysqli_fetch_row($result)){
+	
+	echo"<tr>\n";
+	for($i=0;$i<mysqli_num_fields($result);$i++){
+		echo "<td>".$row[$i]."</td>\n";
+	}
+	echo "</tr>\n";
+}
+echo "</table>\n";
+} else {
+
+echo "0 results";
+}
+mysqli_free_result($result);
 mysqli_close($conn);
-?> 
+?>

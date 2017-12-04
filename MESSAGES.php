@@ -1,15 +1,14 @@
 <?php
-$servername = “cssql.seattleu.edu";
-$username = "username";
-$password = "password";
+$servername = "cssql.seattleu.edu";
+$username = "sudold";
+$password = "sudold";
+$dbname = "sudold";
 // Create connection
-$conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
 if (!$conn) {
 die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully";
-mysqli_close($conn);
 
 $sql = "SELECT * FROM MESSAGES";
 $result = mysqli_query($conn, $sql);
@@ -17,20 +16,21 @@ if (mysqli_num_rows($result) > 0) {
 echo "<table border = '1'>\n";
 // output data of each row
 echo "<tr>\n";
-echo "<th>Course Code</th>\n<th>Course
-Name</th>\n";
-echo "</tr>\n";
-while($row = mysqli_fetch_row($result)) {
-echo "<tr>\n";
-echo "<td>" . $row[0] . "</td>\n" . "<td>".
-$row[1] . "</td>\n";
-echo "</tr>\n";
+echo "<th>message_id</th>\n<th>username_sent</th>\n<th>username_recd</th>\n<th>date</th>\n<th>msg_txt</th>\n";
+echo "</tr>\n"; 
+while($row = mysqli_fetch_row($result)){
+	
+	echo"<tr>\n";
+	for($i=0;$i<mysqli_num_fields($result);$i++){
+		echo "<td>".$row[$i]."</td>\n";
+	}
+	echo "</tr>\n";
 }
 echo "</table>\n";
 } else {
+
 echo "0 results";
 }
 mysqli_free_result($result);
 mysqli_close($conn);
 ?>
-
