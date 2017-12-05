@@ -1,3 +1,10 @@
+<html>
+<head>
+  <link rel="stylesheet" href="table.css">
+</head>
+</html>
+
+
 
 <?php
 $servername = "cssql.seattleu.edu";
@@ -20,7 +27,7 @@ HAVING AVG(star_rating) > 3";
 
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
-echo "<table border = '1'>\n";
+echo "<table class = \"blueTable\" border = '1'>\n";
 // output data of each row
 
 echo "<tr>\n";

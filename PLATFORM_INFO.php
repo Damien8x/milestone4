@@ -1,3 +1,12 @@
+
+<html>
+<head>
+  <link rel="stylesheet" href="table.css">
+</head>
+</html>
+
+
+
 <?php
 $servername = "cssql.seattleu.edu";
 $username = "sudold";
@@ -14,7 +23,7 @@ die("Connection failed: " . mysqli_connect_error());
 $sql = "SELECT * FROM PLATFORM_INFO";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
-echo "<table border = '1'>\n";
+echo "<table class = \"blueTable\" border = '1'>\n";
 // output data of each row
 
 echo "<tr>\n";
