@@ -35,9 +35,14 @@ while($row = mysqli_fetch_row($result)){
 	echo "</tr>\n";
 }
 echo "</table>\n";
-} else {
+} else{
+if(mysqli_num_rows($result) == 0 AND $result == true) 
+{
+echo "<img src=\"sorry.png\" alt=\"sorry\">";
+}else{
+	echo "<img src=\"sorry1.png\" alt=\"sorry1\">";
+}
 
-echo "0 results";
 }
 mysqli_free_result($result);
 mysqli_close($conn);
